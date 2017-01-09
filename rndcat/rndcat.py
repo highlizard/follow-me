@@ -4,7 +4,7 @@ from __main__ import send_cmd_help
 import aiohttp
 
 class rndcat:
-    """Animal commands."""
+    """ร่างกายต้องการแมว"""
 
     def __init__(self, bot):
         self.bot = bot
