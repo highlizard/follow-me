@@ -1,6 +1,8 @@
 {
-    "AUTHOR" : "Paddolicious#8880",
-    "NAME" : "Mao Lmao",
-    "SHORT" : "LMAO Mao style",
-    "DESCRIPTION" : "LMAO Mao style"
+    "AUTHOR" : "Eslyium",
+    "DESCRIPTION" : "Posts Cats/Pugs",
+    "DISABLED" : false,
+    "INSTALL_MSG" : "Congrats On Downloading The Animal Cog!",
+    "NAME" : "Animal",
+    "SHORT" : "Posts Cats/Pugs"
 }
