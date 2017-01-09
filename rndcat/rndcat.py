@@ -10,7 +10,7 @@ class rndcat:
     async def listener(self, message):
         channel = message.channel
         if message.author.id != self.bot.user.id:
-            if message.content.lower().startswith('ร่างกายต้องการแมว') or message.content.lower().startswith('aayy'):
+            if message.content.lower().startswith('ccat') or message.content.lower().startswith('aayy'):
                 search = "http://random.cat/meow"
                 try:
                      async with aiohttp.get(search) as r:
