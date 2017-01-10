@@ -113,7 +113,7 @@ class Watcher:
                 fileIO(self.passports_file, 'save', passports)
                 avatar = member.avatar_url if member.avatar else member.default_avatar_url
                 em = discord.Embed(color=discord.Color.green())
-                em.set_author(name='{}#{} has joined!'.format(member.display_name, member.discriminator), icon_url=avatar)
+                em.set_author(name='Guten Tag!! {}#{}'.format(member.display_name, member.discriminator), icon_url=avatar)
                 await self.bot.send_message(customs_channel, embed=em)
 
    
@@ -140,7 +140,7 @@ class Watcher:
                 fileIO(self.passports_file, 'save', passports)
                 avatar = member.avatar_url if member.avatar else member.default_avatar_url
                 em = discord.Embed(color=discord.Color.green())
-                em.set_author(name='{}#{} has left'.format(member.display_name, member.discriminator, member.id), icon_url=avatar)
+                em.set_author(name='Auf Wiedersehen {}#{}'.format(member.display_name, member.discriminator, member.id), icon_url=avatar)
                 await self.bot.send_message(customs_channel, embed=em)
 
 
