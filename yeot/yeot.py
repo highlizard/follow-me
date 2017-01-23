@@ -65,8 +65,7 @@ class Yeot:
         await self.bot.whisper("ในโหลมีตังเมสุดยอดต้นตำรับ {} ชิ้น"
                                "".format(yeots))
 
-   
-    def account_check(self, settings, userobj):
+   def account_check(self, settings, userobj):
         if userobj.id not in settings["Players"]:
             settings["Players"][userobj.id] = {"Yeots": 0,
                                                "Steal CD": 0,
