@@ -66,9 +66,51 @@ class Yeot:
                                "".format(yeots))
 
    
+    def account_check(self, settings, userobj):
+        if userobj.id not in settings["Players"]:
+            settings["Players"][userobj.id] = {"Yeots": 0,
+                                               "Steal CD": 0,
+                                               "Yeot CD": 0}
+            dataIO.save_json(self.file_path, self.system)
 
+    async def check_cooldowns(self, userid, action, settings):
+        path = settings["Config"][action]
+        if abs(settings["Players"][userid][action] - int(time.perf_counter())) >= path:
+            settings["Players"][userid][action] = int(time.perf_counter())
+            dataIO.save_json(self.file_path, self.system)
+            return True
+        elif settings["Players"][userid][action] == 0:
+            settings["Players"][userid][action] = int(time.perf_counter())
+            dataIO.save_json(self.file_path, self.system)
+            return True
+        else:
+            s = abs(settings["Players"][userid][action] - int(time.perf_counter()))
+            seconds = abs(s - path)
+            remaining = self.time_formatting(seconds)
+            await self.bot.say("This action has a cooldown. You still have:\n{}".format(remaining))
+            return False
 
-def check_folders():
+    def time_formatting(self, seconds):
+        m, s = divmod(seconds, 60)
+        h, m = divmod(m, 60)
+        msg = "```{} hours, {} minutes and {} seconds remaining```".format(h, m, s)
+        return msg
+
+    def check_server_settings(self, server):
+        if server.id not in self.system["Servers"]:
+            self.system["Servers"][server.id] = {"Players": {},
+                                                 "Config": {"Steal CD": 5,
+                                                            "Yeot CD": 5}
+                                                 }
+            dataIO.save_json(self.file_path, self.system)
+            print("Creating default heist settings for Server: {}".format(server.name))
+            path = self.system["Servers"][server.id]
+            return path
+        else:
+            path = self.system["Servers"][server.id]
+            return path
+
+    def check_folders():
     if not os.path.exists("data/yeot/yeot"):
         print("Creating data/yeot/yeot folder...")
         os.makedirs("data/yeot/yeot")
