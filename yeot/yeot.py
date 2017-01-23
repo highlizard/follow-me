@@ -64,8 +64,48 @@ class Yeot:
         yeots = settings["Players"][author.id]["Yeotss"]
         await self.bot.whisper("ในโหลมีตังเมสุดยอดต้นตำรับ {} ชิ้น"
                                "".format(yeots))
+         @commands.command(pass_context=True, no_pm=True)
+    async def steal(self, ctx, user: discord.Member=None):
+        """Steal cookies from another user. 2h cooldown."""
+        author = ctx.message.author
+        server = ctx.message.server
+        action = "Steal CD"
+        settings = self.check_server_settings(server)
+        self.account_check(settings, author)
+        if not user:
+            users = [server.get_member(x) for x in settings["Players"].keys() if x != author.id and x in settings["Players"].keys()]
+            users = [x for x in users if settings["Players"][x.id]["Yeots"] > 0]
+            if not users:
+                user = "Fail"
+            else:
+                user = random.choice(users)
+                self.account_check(settings, user)
+        if await self.check_cooldowns(author.id, action, settings):
+            if user == "Fail":
+                msg = "ω(=OｪO=)ω Nyaaaaaaaan! I couldn't find anyone with yeots!"
+            elif settings["Players"][user.id]["Yeots"] == 0:
+                msg = ("ω(=｀ｪ ´=)ω Nyaa! Neko-chan is sorry, nothing but crumbs in this human's "
+                       ":cookie: jar!")
+            else:
+                success_chance = random.randint(1, 100)
+                if success_chance <= 90:
+                    yeot_jar = settings["Players"][user.id]["Yeots"]
+                    yeots_stolen = int(cookie_jar * 0.75)
+                    if yeots_stolen == 0:
+                        yeots_stolen = 1
+                    stolen = random.randint(1, yeots_stolen)
+                    settings["Players"][user.id]["Yeots"] -= stolen
+                    settings["Players"][author.id]["Yeots"] += stolen
+                    dataIO.save_json(self.file_path, self.system)
+                    msg = ("ω(=＾ ‥ ＾=)ﾉ彡:cookie:\nYou stole {} yeots from "
+                          "{}!".format(stolen, user.name))
+                else:
+                    msg = ("ω(=｀ｪ ´=)ω Nyaa... Neko-chan couldn't find their :cookie: jar!")
+            await self.bot.say("ଲ(=(|) ɪ (|)=)ଲ Neko-chan is on the prowl to steal :cookie:")
+            await asyncio.sleep(3)
+            await self.bot.say(msg)
 
-   def account_check(self, settings, userobj):
+    def account_check(self, settings, userobj):
         if userobj.id not in settings["Players"]:
             settings["Players"][userobj.id] = {"Yeots": 0,
                                                "Steal CD": 0,
