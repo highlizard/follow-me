@@ -64,7 +64,8 @@ class Yeot:
         yeots = settings["Players"][author.id]["Yeotss"]
         await self.bot.whisper("ในโหลมีตังเมสุดยอดต้นตำรับ {} ชิ้น"
                                "".format(yeots))
-         @commands.command(pass_context=True, no_pm=True)
+        
+    @commands.command(pass_context=True, no_pm=True)
     async def steal(self, ctx, user: discord.Member=None):
         """Steal cookies from another user. 2h cooldown."""
         author = ctx.message.author
@@ -149,7 +150,7 @@ class Yeot:
             path = self.system["Servers"][server.id]
             return path
 
-    def check_folders():
+def check_folders():
     if not os.path.exists("data/yeot/yeot"):
         print("Creating data/yeot/yeot folder...")
         os.makedirs("data/yeot/yeot")
