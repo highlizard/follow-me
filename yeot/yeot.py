@@ -91,7 +91,7 @@ class Yeot:
                 success_chance = random.randint(1, 100)
                 if success_chance <= 90:
                     yeot_jar = settings["Players"][user.id]["Yeots"]
-                    yeots_stolen = int(cookie_jar * 0.75)
+                    yeots_stolen = int(yeot_jar * 0.75)
                     if yeots_stolen == 0:
                         yeots_stolen = 1
                     stolen = random.randint(1, yeots_stolen)
