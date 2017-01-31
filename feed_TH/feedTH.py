@@ -87,7 +87,7 @@ class Feed:
 
     @commands.command()
     async def feed(self, user : discord.Member=None):
-        """Force A food Item Down A Users Throat"""
+        """เลเวียสามารถเสิร์ฟอาหารให้คุณได้ค่ะ"""
         if user.id == self.bot.user.id:
             await self.bot.say("เลเวียจะรับ {} จากคุณค่ะ".format(rndchoice(self.items)))
                                              
@@ -97,9 +97,9 @@ class Feed:
                                              user.name))
 
 def check_folders():
-    if not os.path.exists("data/feed_TH"):
+    if not os.path.exists("data/feedTH"):
         print("Creating data/feed folder...")
-        os.makedirs("data/feed_TH")
+        os.makedirs("data/feedTH")
 
 def check_files():
     f = "data/feed/items.json"
@@ -111,5 +111,5 @@ def check_files():
 def setup(bot):
     check_folders()
     check_files()
-    n = Feed_TH(bot)
+    n = FeedTH(bot)
     bot.add_cog(n)
