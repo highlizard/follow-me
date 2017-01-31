@@ -79,7 +79,7 @@ defaults = [
     ":peanuts:",]
 
 class FeedTH:
-    """เลเวียสามารถเสิร์ฟอาหารให้คุณได้ค่ะ"""
+    """ok"""
 
     def __init__(self, bot):
         self.bot = bot
@@ -87,7 +87,7 @@ class FeedTH:
 
     @commands.command()
     async def feed(self, user : discord.Member=None):
-        """เลเวียสามารถป้อนอาหารให้คุณได้ค่ะ"""
+        """ok"""
         if user.id == self.bot.user.id:
             await self.bot.say("เลเวียจะรับ {} จากคุณค่ะ".format(rndchoice(self.items)))                                             
             return
