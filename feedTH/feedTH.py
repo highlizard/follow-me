@@ -98,11 +98,11 @@ class feedTH:
 
 def check_folders():
     if not os.path.exists("data/feedTH"):
-        print("Creating data/feed folder...")
+        print("Creating data/feedTH folder...")
         os.makedirs("data/feedTH")
 
 def check_files():
-    f = "data/feed/items.json"
+    f = "data/feedTH/items.json"
     if not fileIO(f, "check"):
         print("Creating empty items.json...")
         fileIO(f, "save", defaults)
