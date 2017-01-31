@@ -89,8 +89,7 @@ class FeedTH:
     async def feed(self, user : discord.Member=None):
         """เลเวียสามารถป้อนอาหารให้คุณได้ค่ะ"""
         if user.id == self.bot.user.id:
-            await self.bot.say("เลเวียจะรับ {} จากคุณค่ะ".format(rndchoice(self.items)))
-                                             
+            await self.bot.say("เลเวียจะรับ {} จากคุณค่ะ".format(rndchoice(self.items)))                                             
             return
         await self.bot.say("- เลเวียป้อน {} ให้คุณ {} "
                            " ค่ะ -".format(rndchoice(self.items),
