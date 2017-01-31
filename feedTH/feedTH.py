@@ -78,7 +78,7 @@ defaults = [
     ":popcorn:",
     ":peanuts:",]
 
-class feedTH:
+class FeedTH:
     """เลเวียสามารถเสิร์ฟอาหารให้คุณได้ค่ะ"""
 
     def __init__(self, bot):
@@ -87,12 +87,12 @@ class feedTH:
 
     @commands.command()
     async def feed(self, user : discord.Member=None):
-        """เลเวียสามารถเสิร์ฟอาหารให้คุณได้ค่ะ"""
+        """เลเวียสามารถป้อนอาหารให้คุณได้ค่ะ"""
         if user.id == self.bot.user.id:
             await self.bot.say("เลเวียจะรับ {} จากคุณค่ะ".format(rndchoice(self.items)))
                                              
             return
-        await self.bot.say("- เลเวียเสิร์ฟ {} ให้คุณ {} "
+        await self.bot.say("- เลเวียป้อน {} ให้คุณ {} "
                            " ค่ะ -".format(rndchoice(self.items),
                                              user.name))
 
@@ -111,5 +111,5 @@ def check_files():
 def setup(bot):
     check_folders()
     check_files()
-    n = feedTH(bot)
+    n = FeedTH(bot)
     bot.add_cog(n)
