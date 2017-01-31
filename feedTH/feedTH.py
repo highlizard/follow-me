@@ -78,12 +78,12 @@ defaults = [
     ":popcorn:",
     ":peanuts:",]
 
-class Feed:
+class feedTH:
     """เลเวียสามารถเสิร์ฟอาหารให้คุณได้ค่ะ"""
 
     def __init__(self, bot):
         self.bot = bot
-        self.items = fileIO("data/feed_TH/items.json", "load")
+        self.items = fileIO("data/feedTH/items.json", "load")
 
     @commands.command()
     async def feed(self, user : discord.Member=None):
@@ -111,5 +111,5 @@ def check_files():
 def setup(bot):
     check_folders()
     check_files()
-    n = FeedTH(bot)
+    n = feedTH(bot)
     bot.add_cog(n)
