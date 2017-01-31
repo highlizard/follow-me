@@ -79,11 +79,11 @@ defaults = [
     ":peanuts:",]
 
 class Feed:
-    """Feeding command."""
+    """เลเวียสามารถเสิร์ฟอาหารให้คุณได้ค่ะ"""
 
     def __init__(self, bot):
         self.bot = bot
-        self.items = fileIO("data/feed/items.json", "load")
+        self.items = fileIO("data/feed_TH/items.json", "load")
 
     @commands.command()
     async def feed(self, user : discord.Member=None):
@@ -97,9 +97,9 @@ class Feed:
                                              user.name))
 
 def check_folders():
-    if not os.path.exists("data/feed"):
+    if not os.path.exists("data/feed_TH"):
         print("Creating data/feed folder...")
-        os.makedirs("data/feed")
+        os.makedirs("data/feed_TH")
 
 def check_files():
     f = "data/feed/items.json"
@@ -111,5 +111,5 @@ def check_files():
 def setup(bot):
     check_folders()
     check_files()
-    n = Feed(bot)
+    n = Feed_TH(bot)
     bot.add_cog(n)
