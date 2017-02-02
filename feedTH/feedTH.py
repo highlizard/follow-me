@@ -78,7 +78,6 @@ defaults = [
     ":popcorn:",
     ":peanuts:",]
 
-
 class FeedTH:
     """Feeding command."""
 
@@ -90,26 +89,27 @@ class FeedTH:
     async def feed(self, user : discord.Member=None):
         """Force A food Item Down A Users Throat"""
         if user.id == self.bot.user.id:
-            await self.bot.say("เลเวียจะรับ {} จากคุณค่ะ".format(rndchoice(self.items)))                                           
+            await self.bot.say("เลเวียจะรับ {} จากคุณค่ะ".format(rndchoice(self.items)))
+                                             
             return
         await self.bot.say("- เลเวียเสิร์ฟ {} ให้คุณ {} "
                            " ค่ะ -".format(rndchoice(self.items),
-                                          user.name))
-               
-    def check_folders():
-    	if not os.path.exists("data/feed"):
-            print("Creating data/feed folder...")
-            os.makedirs("data/feed")
+                                             user.name))
 
-    def check_files():
-    	f = "data/feed/items.json"
+def check_folders():
+    if not os.path.exists("data/feed"):
+        print("Creating data/feed folder...")
+        os.makedirs("data/feed")
+
+def check_files():
+    f = "data/feed/items.json"
     if not fileIO(f, "check"):
         print("Creating empty items.json...")
         fileIO(f, "save", defaults)
 
-        
-    def setup(bot):
-    	check_folders()
-    	check_files()
-    	n = FeedTH(bot)
-    	bot.add_cog(n)
+
+def setup(bot):
+    check_folders()
+    check_files()
+    n = FeedTH(bot)
+    bot.add_cog(n)
