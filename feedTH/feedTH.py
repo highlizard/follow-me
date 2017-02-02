@@ -78,6 +78,7 @@ defaults = [
     ":popcorn:",
     ":peanuts:",]
 
+
 class FeedTH:
     """Feeding command."""
 
@@ -106,7 +107,7 @@ class FeedTH:
         print("Creating empty items.json...")
         fileIO(f, "save", defaults)
 
-
+        
     def setup(bot):
     	check_folders()
     	check_files()
