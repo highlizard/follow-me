@@ -86,10 +86,11 @@ class FeedTH:
         self.items = fileIO("data/feed/items.json", "load")
 
     @commands.command()
-    async def feed(self, user : discord.Member):
+    async def feed(self, user : discord.Member=none):
         """Force A food Item Down A Users Throat"""
         if user.id == self.bot.user.id:
-            await self.bot.say("เลเวียจะรับ {} จากคุณ {} ค่ะ".format(rndchoice(self.items),
+            await self.bot.say("เลเวียจะรับ {} จากคุณ {} "
+                               "ค่ะ".format(rndchoice(self.items),
                                                                 user.name))
             return
         await self.bot.say("- เลเวียเสิร์ฟ {} ให้คุณ {} "
