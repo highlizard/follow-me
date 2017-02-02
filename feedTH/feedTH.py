@@ -88,8 +88,6 @@ class FeedTH:
     @commands.command()
     async def feed(self, user : discord.Member):
         """Force A food Item Down A Users Throat"""
-        if user != None:
-            msg = ""
         if user.id == self.bot.user.id:
             await self.bot.say("เลเวียจะรับ {} จากคุณค่ะ".format(rndchoice(self.items)))
                                              
@@ -98,7 +96,7 @@ class FeedTH:
                            " ค่ะ -".format(rndchoice(self.items),
                                              user.name))
         else:
-            await self.bot.say("*flips a coin and... " )
+            await self.bot.say("*flips a coin and..." )
 
 def check_folders():
     if not os.path.exists("data/feed"):
