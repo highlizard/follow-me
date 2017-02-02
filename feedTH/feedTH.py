@@ -79,7 +79,7 @@ defaults = [
     ":peanuts:",]
 
 class FeedTH:
-    """Feeding command."""
+    """เลเวียจะเสิร์ฟอาหารให้คุณ"""
 
     def __init__(self, bot):
         self.bot = bot
@@ -87,7 +87,7 @@ class FeedTH:
 
     @commands.command()
     async def feed(self, user : discord.Member):
-        """Force A food Item Down A Users Throat"""
+        """อาหารจากฝีมือเลเวีย"""
         if not user:
             user = author
                                              
