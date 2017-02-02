@@ -79,39 +79,39 @@ defaults = [
     ":peanuts:",]
 
 class FeedTH:
-    """Feeding command."""
+    	"""Feeding command."""
 
-    def __init__(self, bot):
+    	def __init__(self, bot):
         self.bot = bot
         self.items = fileIO("data/feed/items.json", "load")
 
-    @commands.command()
-    async def feed(self, user : discord.Member):
+    	@commands.command()
+    	async def feed(self, ctx, *, user: discord.Member=None):
         """Force A food Item Down A Users Throat"""
         if not user:
-	    await ctx.reply("generic.cannot_find_user")
+	    	await ctx.reply("generic.cannot_find_user")
                 
         if user.id == self.bot.user.id:
-            await self.bot.say("เลเวียจะรับ {} จากคุณค่ะ".format(rndchoice(self.items)))
+            	await self.bot.say("เลเวียจะรับ {} จากคุณค่ะ".format(rndchoice(self.items)))
                                              
-            return
+            	return
         await self.bot.say("- เลเวียเสิร์ฟ {} ให้คุณ {} "
                            " ค่ะ -".format(rndchoice(self.items),
                                              user.name))
 def check_folders():
-    if not os.path.exists("data/feed"):
+    	if not os.path.exists("data/feed"):
         print("Creating data/feed folder...")
         os.makedirs("data/feed")
 
 def check_files():
-    f = "data/feed/items.json"
+    	f = "data/feed/items.json"
     if not fileIO(f, "check"):
         print("Creating empty items.json...")
         fileIO(f, "save", defaults)
 
 
 def setup(bot):
-    check_folders()
-    check_files()
-    n = FeedTH(bot)
-    bot.add_cog(n)
+    	check_folders()
+    	check_files()
+    	n = FeedTH(bot)
+    	bot.add_cog(n)
