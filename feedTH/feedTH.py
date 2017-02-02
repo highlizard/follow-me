@@ -86,7 +86,7 @@ class FeedTH:
         self.items = fileIO("data/feed/items.json", "load")
 
     	@commands.command()
-    	async def feed(self, ctx, *, user: discord.Member=None):
+    	async def feed(self, user : discord.Member):
         """Force A food Item Down A Users Throat"""
         if not user:
 	    	await ctx.reply("generic.cannot_find_user")
