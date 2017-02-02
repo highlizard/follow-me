@@ -95,9 +95,7 @@ class FeedTH:
         await self.bot.say("- เลเวียเสิร์ฟ {} ให้คุณ {} "
                            " ค่ะ -".format(rndchoice(self.items),
                                           user.name))
-        if not user:
-	        await ctx.reply("generic.cannot_find_user")
-        
+               
     def check_folders():
     	if not os.path.exists("data/feed"):
             print("Creating data/feed folder...")
