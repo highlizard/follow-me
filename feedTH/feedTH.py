@@ -88,9 +88,9 @@ class FeedTH:
     @commands.command()
     async def feed(self, user : discord.Member):
         """Force A food Item Down A Users Throat"""
-        if user is None:
-            await self.bot.say("- เลเวียเสิร์ฟ {} ให้คุณค่ะ -".format(rndchoice(self.items)))
-        else:                                     
+        if not user:
+            user = author
+                                             
         if user.id == self.bot.user.id:
             await self.bot.say("เลเวียจะรับ {} จากคุณค่ะ".format(rndchoice(self.items)))
                                              
