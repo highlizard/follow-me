@@ -16,7 +16,7 @@ class Serving:
         self.scores = dataIO.load_json('data/serving/scores.json')
         self.subscriptions = dataIO.load_json('data/serving/subscriptions.json')
         self.settings = dataIO.load_json('data/serving/settings.json')
-        self.animals = {'sushi': ':sushi: **_Quack!_**', 'tea': ':tea: **_Noot!_**', 'chicken': ':rooster: **_Bah-gawk!_**', 'pigeon': ':dove: **_Coo!_**'}
+        self.animals = {'sushi': ':sushi: **_ซูชิ_**', 'tea': ':tea: **_ชา!_**', 'coffee': ':coffee: **_กาแฟ!_**', 'tropical_drink': ':tropical_drink: **_น้ำผลไม้!_**'}
         self.in_game = []
         self.paused_games = []
         self._latest_message_check_message_limit = 5
@@ -142,7 +142,7 @@ class Serving:
 
     async def _wait_for_bang(self, server, channel):
         def check(message):
-            return message.content.lower().split()[0] == 'bang' or message.content.lower().split()[0] == 'b'
+            return message.content.lower().split()[0] == 'eat' or message.content.lower().split()[0] == 'e'
 
         animal = random.choice(list(self.animals.keys()))
         await self.bot.send_message(channel, self.animals[animal])
@@ -151,11 +151,11 @@ class Serving:
             author = message.author
             if random.randrange(0, 17) > 1:
                 await self.add_score(server, author, animal)
-                msg = '**{} shot a {}!**'.format(author.mention, animal)
+                msg = '**{} ได้รับ {}!**'.format(author.mention, animal)
             else:
-                msg = '**{} missed the shot and the {} got away!**'.format(author.mention, animal)
+                msg = '**{} ไม่ได้รับ {} !**'.format(author.mention, animal)
         else:
-            msg = '**The {} got away!** :confused:'.format(animal)
+            msg = '**มิสเทลทีนจากไป แล้วไม่เหลือ {} อีกเลย!** '.format(animal)
         self.in_game.remove(channel.id)
         await self.bot.send_message(channel, msg)
 
@@ -168,7 +168,7 @@ class Serving:
                 return True
         if channel.id not in self.paused_games:
             self.paused_games.append(channel.id)
-            await self.bot.send_message(channel, '**It seems there are noone here. The serve will be resumed when someone treads here again.**')
+            await self.bot.send_message(channel, '**ไม่มีใครอยู่ที่นี่ หยุดเสิร์ฟอาหารชั่วคราวจนกว่าจะมีเหยื่อยมาอีกครั้ง**')
         return False
 
     async def _serving_loop(self):
